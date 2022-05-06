@@ -14,4 +14,36 @@ size = Vector3( 0.5, 0.3, 1 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" parent="." index="0"]
+layers = 2
 mesh = SubResource( 2 )
+
+[node name="turret_body" parent="turret" index="0"]
+layers = 2
+
+[node name="turret_barrel" parent="turret" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate2" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate3" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate4" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate5" index="1"]
+layers = 2
+
+[node name="mesh" parent="armor_plate6" index="1"]
+layers = 2
+
+[editable path="armor_plate"]
+[editable path="armor_plate2"]
+[editable path="armor_plate3"]
+[editable path="armor_plate4"]
+[editable path="armor_plate5"]
+[editable path="armor_plate6"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://obj/ai_tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://obj/player_tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/utils/cam_xy_track.gd" type="Script" id=2]
+[ext_resource path="res://obj/tank.tscn" type="PackedScene" id=3]
 
 [sub_resource type="OpenSimplexNoise" id=6]
 
@@ -35,23 +37,15 @@ shadow_enabled = true
 
 [node name="main_cam" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12, 0 )
+script = ExtResource( 2 )
+track_this = NodePath("../Tanks/player_tank")
 
 [node name="Tanks" type="Spatial" parent="."]
 
-[node name="tank" parent="Tanks" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, 0 )
+[node name="player_tank" parent="Tanks" instance=ExtResource( 1 )]
 
-[node name="tank2" parent="Tanks" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 3 )
-
-[node name="tank3" parent="Tanks" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.2, 1 )
-
-[node name="tank4" parent="Tanks" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, -3 )
-
-[node name="tank5" parent="Tanks" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.2, -3 )
+[node name="dummy_tank" parent="Tanks" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.2, 0 )
 
 [node name="World" type="Spatial" parent="."]
 
@@ -122,6 +116,7 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="UI/ViewportContainer"]
 size = Vector2( 300, 300 )
+transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 shadow_atlas_size = 2
@@ -129,3 +124,7 @@ shadow_atlas_size = 2
 [node name="tank_cam" type="Camera" parent="UI/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0 )
 cull_mask = 1048574
+projection = 1
+size = 2.0
+script = ExtResource( 2 )
+track_this = NodePath("../../../../Tanks/player_tank")

@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://obj/armor_plate.tscn" type="PackedScene" id=1]
 
 [sub_resource type="SpatialMaterial" id=14]
 albedo_color = Color( 0.317647, 0.443137, 0.654902, 1 )
@@ -16,27 +18,67 @@ size = Vector3( 0.3, 0.1, 0.3 )
 [sub_resource type="CubeMesh" id=12]
 size = Vector3( 0.05, 0.05, 0.75 )
 
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 0.2, 0.125, 0.45 )
+
 [node name="tank" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
 axis_lock_motion_y = true
 move_lock_y = true
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-layers = 2
 mesh = SubResource( 15 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 13 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
+[node name="turret" type="Spatial" parent="."]
+
+[node name="turret_body" type="MeshInstance" parent="turret"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
-layers = 2
 mesh = SubResource( 10 )
+skeleton = NodePath("../..")
 material/0 = null
 
-[node name="MeshInstance3" type="MeshInstance" parent="."]
+[node name="turret_barrel" type="MeshInstance" parent="turret"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.5 )
-layers = 2
 mesh = SubResource( 12 )
+skeleton = NodePath("../..")
 material/0 = null
+
+[node name="muzzle" type="Spatial" parent="turret"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.85 )
+
+[node name="muzzle_box" type="Area" parent="turret"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.85 )
+
+[node name="CollisionShape" type="CollisionShape" parent="turret/muzzle_box"]
+shape = SubResource( 16 )
+
+[node name="kill_box" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kill_box"]
+shape = SubResource( 17 )
+
+[node name="armor_plate" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.5 )
+
+[node name="armor_plate2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.25, 0.3, -0.25 )
+
+[node name="armor_plate3" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.25, 0.3, 0.25 )
+
+[node name="armor_plate4" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, 0.3, -0.25 )
+
+[node name="armor_plate5" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, 0.3, 0.25 )
+
+[node name="armor_plate6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.5 )
