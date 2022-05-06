@@ -9,7 +9,7 @@ var shot = preload("res://obj/basic_shot.tscn")
 var forward_speed = 0.0
 var forward_angle = Vector3(0, 0, -1)
 var turret_angle = Vector3(0, 0, -1)
-var reload_time = 5
+var reload_time = 1
 var reload_timer = 0
 
 var muzzle_clear = false setget , _check_muzzle
